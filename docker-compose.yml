@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  postgres_db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  pgweb:
+    image: sosedoff/pgweb
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres_db:5432/postgres?sslmode=disable
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres_db
+
+  app:
+    build: ./API/
+    restart: always
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres_db:5432/postgres?sslmode=disable
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres_db
+
+  client:
+    build: ./front/
+    restart: always
+    volumes:
+      - .:/vue-app/
+      - /vue-app/node_modules
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app

@@ -1,0 +1,142 @@
+@use "sass:map";
+p,
+.text {
+  color: $black;
+  line-height: 149%;
+  letter-spacing: 0.02em;
+  font-size: 18px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 149%;
+  letter-spacing: 0.02em;
+  color: $black;
+  font-weight: normal; //dont remove
+}
+
+h1,
+.header-md {
+  font-size: 48px !important;
+}
+
+h2,
+.header-sm {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+@media only screen and (max-width: map.get($breakpoints, "md")) {
+  h1,.header-lg,header-xl {
+   font-size: 36px !important;
+  }
+}
+
+.header-lg {
+  font-size: 55px ;
+  line-height: 149%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $black;
+}
+
+.header-xl {
+  font-size: 72px;
+}
+
+.text-xs {
+  font-size: 0.75rem !important; //12px
+}
+
+.text-s {
+  font-size: 0.875rem !important; //14px
+}
+
+.text-md {
+  font-size: 1rem !important; //16px
+}
+
+.text-xl {
+  font-size: 1.25rem !important; //20px
+}
+.text-xxl {
+  font-size: 1.5rem !important; //24px
+}
+.text-xxxl {
+  font-size: 2rem !important; //32px
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+//Font-weight
+.bold {
+  font-weight: bold !important;
+}
+.normal {
+  font-weight: normal !important;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.normalcase {
+  text-transform: none !important;
+}
+.upper {
+  text-transform: uppercase !important;
+}
+
+.text-black {
+  color: $black !important;
+}
+.text-white {
+  color: white !important;
+}
+.text-gray-300 {
+  color: $gray-300 !important;
+}
+.text-gray-400 {
+  color: $gray-400 !important;
+}
+.text-gray-600 {
+  color: $gray-600 !important;
+}
+.text-gray-700 {
+  color: $gray-700 !important;
+}
+
+.text-turquoise {
+  color: $turquoise !important;
+}
+
+@each $name, $size in $breakpoints {
+  @include mq($size) {
+    .#{$name}\:text-center {
+      text-align: center !important;
+    }
+    .#{$name}\:text-left {
+      text-align: left !important;
+    }
+    .#{$name}\:text-right {
+      text-align: right !important;
+    }
+  }
+}

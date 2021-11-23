@@ -1,0 +1,41 @@
+// //Fonts
+// @font-face {
+//   font-family: Muller;
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("../../assets/fonts/Muller.woff2");
+// }
+
+// @font-face {
+//   font-family: Muller;
+//   font-style: normal;
+//   font-weight: bold;
+//   src: url("../../assets/fonts/MullerBold.woff2");
+// }
+//Colors
+$turquoise: #00AFC1;
+$black: #231f20;
+$gray-100: #fafafa;
+$gray-300: #F1F1F1;
+$gray-400: #E1E1E1;
+$gray-700: #9DA4AA;
+$red:#F16469;
+$blue:#5FAEFF;
+
+$gray-600: rgba(35, 31, 32, 0.6);//TODO check later
+//Responsiveness
+$breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1230px,
+);
+
+//Body
+
+body {
+  font-family: Muller;
+}
+main {
+  background-color: white;
+}

@@ -1,0 +1,101 @@
+.flex {
+  display: flex;
+  &-col {
+    flex-direction: column;
+  }
+  &-wrap {
+    flex-wrap: wrap;
+  }
+  &-jc-sb {
+    justify-content: space-between;
+  }
+  &-jc-sa {
+    justify-content: space-around;
+  }
+  &-jc-end {
+    justify-content: flex-end;
+  }
+  &-jc-c {
+    justify-content: center;
+  }
+
+  &-ai-c {
+    align-items: center;
+  }
+  &-ai-b {
+    align-items: baseline;
+  }
+  &-ai-s {
+    align-items: flex-start;
+  }
+  &-as-s {
+    align-self: flex-start;
+  }
+  &-as-end {
+    align-self: flex-end;
+  }
+  &-rev {
+    flex-direction: row-reverse;
+  }
+  &-c-rev {
+    flex-direction: column-reverse;
+  }
+}
+
+@for $i from 1 through 6 {
+  .flex-#{$i} {
+    flex: $i;
+  }
+}
+
+@for $i from 0 through 30 {
+  @if $i<=15 {
+    .gap-#{$i} {
+      gap: 0.25rem * $i;
+    }
+  } @else if $i%5==0 {
+    .gap-#{$i} {
+      gap: 0.25rem * $i;
+    }
+  }
+}
+
+@each $name, $size in $breakpoints {
+  @include mq($size) {
+    .#{$name}\:flex {
+      display: flex !important;
+    }
+    .#{$name}\:flex-wrap {
+      flex-wrap: wrap !important;
+    }
+    .#{$name}\:flex-row {
+      flex-direction: row !important;
+    }
+    .#{$name}\:flex-rev {
+      flex-direction: row-reverse !important;
+    }
+    .#{$name}\:flex-column {
+      flex-direction: column !important;
+    }
+    .#{$name}\:flex-d-cr {
+      flex-direction: column-reverse !important;
+    }
+    .#{$name}\:flex-jc-s {
+      justify-content: flex-start !important;
+    }
+    .#{$name}\:flex-jc-c {
+      justify-content: center !important;
+    }
+    .#{$name}\:flex-jc-sb {
+      justify-content: space-between !important;
+    }
+
+    @each $abbr, $property in ("flex": "flex") {
+      @for $i from 1 through 5 {
+        .#{$name}\:#{$abbr}-#{$i} {
+          #{$property}: $i;
+        }
+      }
+    }
+  }
+}

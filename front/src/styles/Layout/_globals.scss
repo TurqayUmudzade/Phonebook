@@ -1,0 +1,193 @@
+section {
+  background: #ffffff;
+  padding: 50px 0px;
+}
+.container {
+  margin: 0 auto;
+  padding: 0px 15px;
+}
+
+.fit {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+//Borders
+@each $abbr,
+  $name
+    in (
+      "border": "border",
+      "border-t": "border-top",
+      "border-b": "border-bottom",
+      "border-l": "border-left",
+      "border-r": "border-right"
+    )
+{
+  .#{$abbr} {
+    #{$name}: 2px solid #e1e1e1;
+  }
+}
+//Increments by 2
+@for $i from 1 through 10 {
+  .rounded-#{$i} {
+    border-radius: math.div(1rem * $i, 8);
+  }
+}
+
+.full-round {
+  border-radius: 50%;
+}
+.image-container {
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+.full-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+//Visibility
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+//backgrounds
+.bg-white {
+  background: white !important;
+}
+.bg-gray-100 {
+  background: $gray-100;
+}
+.bg-gray-300 {
+  background: $gray-300;
+}
+.bg-gray-700 {
+  background: $gray-700;
+}
+
+.bg-dark-500 {
+  background: #2f2f2f;
+}
+.bg-dark-600 {
+  background: #212121 !important;
+}
+
+.hover\:text-turquoise:hover {
+  color: $turquoise !important;
+}
+
+@each $name, $size in $breakpoints {
+  @include mq($size) {
+    .container {
+      max-width: $size;
+    }
+  }
+}
+
+@each $name, $size in $breakpoints {
+  @include mq($size) {
+    @each $abbr,
+      $property
+        in (
+          "border": "border",
+          "border-t": "border-top",
+          "border-b": "border-bottom",
+          "border-l": "border-left",
+          "border-r": "border-right"
+        )
+    {
+      .#{$name}\:#{$abbr} {
+        #{$property}: 2px solid #e1e1e1;
+      }
+    }
+  }
+}
+
+.block {
+  display: block;
+}
+
+@each $name, $size in $breakpoints {
+  @include mq($size) {
+    .#{$name}\:relative {
+      position: relative !important;
+    }
+
+    .#{$name}\:absolute {
+      position: absolute;
+    }
+    .#{$name}\:inline {
+      display: inline !important;
+    }
+    .#{$name}\:fixed {
+      position: fixed !important;
+    }
+    .#{$name}\:block {
+      display: block !important;
+    }
+    .#{$name}\:hidden {
+      display: none !important;
+    }
+
+    .#{$name}\:grid {
+      display: grid !important;
+    }
+
+    .#{$name}\:overflow-hidden{
+      overflow: hidden !important;
+    }
+
+    .#{$name}\:overflow-visible{
+      overflow: visible !important;
+    }
+  }
+}
+
+@for $i from 1 through 9 {
+  .opacity-#{$i} {
+    opacity: math.div($i, 10);
+  }
+}
+
+
+.overflow-visible{
+  overflow: visible;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+
+
+  /* total width */
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 14px 14px transparent;
+    border: solid 4px transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 14px 14px #bbbbbe;
+    border: solid 4px transparent;
+    border-radius: 14px;
+  }
+
+  /* set button(top and bottom of the scrollbar) */
+  ::-webkit-scrollbar-button {
+    display: none;
+  }

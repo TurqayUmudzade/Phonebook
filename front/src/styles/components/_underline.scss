@@ -1,0 +1,47 @@
+//ADD RELATIVE TO ELEMENT OR PARENT
+.underline {
+  cursor: pointer;
+  &::before {
+    position: absolute;
+    content: "";
+    background-color: $turquoise;
+    opacity: 0.2;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+  }
+  &::after {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+  }
+
+  &:hover {
+    outline: 0;
+    transition: color 0.5s ease;
+    cursor: pointer;
+    &::after {
+      background-color: $turquoise;
+      width: 100%;
+      transition: all 0.5s ease 0s;
+    }
+  }
+}
+
+.night-mode,
+.dark-blue-mode {
+  .underline {
+    &::before {
+      background-color: white;
+    }
+    &:hover {
+      &::after {
+        background-color: white;
+      }
+    }
+  }
+}

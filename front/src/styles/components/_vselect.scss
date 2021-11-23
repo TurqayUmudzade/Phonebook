@@ -1,0 +1,42 @@
+.vs__selected-options input {
+  color: #9da4aa;
+}
+
+.v-select {
+  .vs__selected {
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: 0.03em;
+    color: $gray-700;
+  }
+
+  .vs__dropdown-option--highlight {
+    background: $gray-300;
+    color: black;
+  }
+
+  .vs__dropdown-toggle {
+    border: none !important;
+  }
+  .vs__clear {
+    display: none;
+  }
+  .vs__actions {
+    svg path {
+      fill: #e1e1e1;
+    }
+  }
+}
+
+
+.vue-country-select{
+  background-color: white !important;
+  border: none !important;
+  &:focus-within{
+    background: white !important;
+    box-shadow: none !important;
+  }
+  .dropdown:hover{
+    background: white !important;
+  }
+}

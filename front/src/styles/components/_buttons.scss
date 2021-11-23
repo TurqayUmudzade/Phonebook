@@ -1,0 +1,54 @@
+.btn {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 122.5%;
+  cursor: pointer;
+  &-primary {
+    padding: 14px 34px;
+    background: $turquoise;
+    opacity: 0.97;
+    color: #ffffff;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &-primary-rev {
+    border: 1px solid $turquoise;
+    padding: 14px 34px;
+    background: white;
+    opacity: 0.97;
+    color: $turquoise;
+    &:hover {
+      background: $turquoise;
+      color: white;
+    }
+  }
+  &-secondary {
+    padding: 12px 24px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: transparent;
+    &:hover {
+      background-color: white;
+      color: $black !important;
+    }
+  }
+  &-upload{
+    border: 1px solid #231F20;
+    color: #231F20;
+    padding: 12px 26px;
+  }
+  &-bw{
+    border: 1px solid $gray-700;
+    color: $gray-700;
+    font-weight: bold;
+    padding: 15px 32px;
+    background: transparent;
+    &:hover {
+      color: white !important;
+      background: $black;
+      border-color: $black;
+    }
+  }
+}
