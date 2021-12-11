@@ -1,37 +1,33 @@
-version: "3.9"
+version: "3.8"
 
 services:
-  postgres_db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
-
-  pgweb:
-    image: sosedoff/pgweb
+  mysqldb:
+    image: mysql:5.7
     restart: unless-stopped
+    env_file: ./.env
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@postgres_db:5432/postgres?sslmode=disable
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
-      - "8081:8081"
-    depends_on:
-      - postgres_db
-
-  app:
-    build: ./API/
-    restart: always
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@postgres_db:5432/postgres?sslmode=disable
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
-      - .:/app/
-      - /app/node_modules
-    ports:
-      - "3001:3001"
+      - db:/var/lib/mysql
+  app:
     depends_on:
-      - postgres_db
+      - mysqldb
+    build: ./API
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=$MYSQLDB_USER
+      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - DB_NAME=$MYSQLDB_DATABASE
+      - DB_PORT=$MYSQLDB_DOCKER_PORT
+    stdin_open: true
+    tty: true
 
   client:
     build: ./front/
